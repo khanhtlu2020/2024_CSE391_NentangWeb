@@ -1,0 +1,24 @@
+
+table {
+  font-family: serif, 'Times New Roman', Times, serif;
+  border-collapse: collapse;
+}
+
+th{
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 7px;
+}
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+/* #student{
+    width: 100%;
+} */
+
+/* tr:nth-child(even) {
+  background-color: #dddddd;
+} */
