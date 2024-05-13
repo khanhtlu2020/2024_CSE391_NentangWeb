@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B4</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <H3 id="head_title">Basic Info</H3>
+    <div class="content">
+
+        <h4><a id="title">Employee ID</a>9</h4>
+        <h4><a id="title">Last Name</a>Dodsworth</h4>
+        <h4><a id="title">First Name</a>
+        <input type="text" id="fname" name="fav_language" value=""></h4>
+        <h4><a id="title">Gender</a>
+            <div class="radio">
+                  <input type="radio" id="male" name="fav_language" value="">
+                  <label for="male">Male</label><br>
+                  <input type="radio" id="famale" name="fav_language" value="">
+                  <label for="famale">Famale</label><br>
+                  <input type="radio" id="xxx" name="fav_language" value="">
+                  <label for="xxx">XXX</label><br>
+                  <input type="radio" id="zzz" name="fav_language" value="">
+                  <label for="zzz">ZZZ</label>
+
+                <!-- <input type="radio" id="male" name="fav_language" value="Male">
+                <label for="male">Male</label>
+    
+                <input type="radio" id="male" name="fav_language" value="Male">
+                <label for="male">Male</label>
+    
+                <input type="radio" id="male" name="fav_language" value="Male">
+                <label for="male">Male</label> -->
+            </div>
+        </h4>
+        <h4><a id="title">Title</a>
+            <input type="text" id="fname" name="fav_language" value=""></h4>
+        <h4><a id="title">Suffix</a>
+            <input type="text" id="fname" name="fav_language" value=""></h4>
+        <h4><a id="title">Birth Date</a>
+            <input type="text" id="fname" name="fav_language" value=""></h4>
+        
+
+
+    </div>
+
+    <H3 id="head_title">Contact Info</H3>
+
+    <H3 id="head_title">Optional Info</H3>
+    <h4><a id="title">Notes</a>
+    <div class="textarea">
+        <textarea name="content" id="editor">
+            &lt;p&gt;&lt;/p&gt;
+        </textarea>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    </div></h4>
+
+
+</body>
+</html>
