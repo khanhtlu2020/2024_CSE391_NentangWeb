@@ -8,23 +8,24 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 </head>
 <body>
-    <H3 id="head_title">Basic Info</H3>
+    <H2 id="head_title">Basic Info</H2>
     <div class="content">
-
-        <h4><a id="title">Employee ID</a>9</h4>
-        <h4><a id="title">Last Name</a>Dodsworth</h4>
+        <h4><a id="title">Employee ID</a>
+            <input type="text" id="empid" name="empid" value="9"></h4>
+        <h4><a id="title">Last Name</a>
+            <input type="text" id="lname" name="lname" value="Dodsworth"></h4>
         <h4><a id="title">First Name</a>
-        <input type="text" id="fname" name="fav_language" value=""></h4>
-        <h4><a id="title">Gender</a>
+            <input type="text" id="fname" name="fname" value="Anne"></h4>
+        <h4><a id="title">Gender</a></h4>
             <div class="radio">
-                  <input type="radio" id="male" name="fav_language" value="">
-                  <label for="male">Male</label><br>
-                  <input type="radio" id="famale" name="fav_language" value="">
-                  <label for="famale">Famale</label><br>
-                  <input type="radio" id="xxx" name="fav_language" value="">
-                  <label for="xxx">XXX</label><br>
-                  <input type="radio" id="zzz" name="fav_language" value="">
-                  <label for="zzz">ZZZ</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="xxx" name="gender" value="xxx">
+                <label for="xxx">XXX</label><br>
+                <input type="radio" id="zzz" name="gender" value="zzz">
+                <label for="zzz">ZZZ</label>
 
                 <!-- <input type="radio" id="male" name="fav_language" value="Male">
                 <label for="male">Male</label>
@@ -37,33 +38,85 @@
             </div>
         </h4>
         <h4><a id="title">Title</a>
-            <input type="text" id="fname" name="fav_language" value=""></h4>
+            <input type="text" id="title" name="title" value=""></h4>
         <h4><a id="title">Suffix</a>
-            <input type="text" id="fname" name="fav_language" value=""></h4>
+            <input type="text" id="suffix" name="suffix" ></h4>
         <h4><a id="title">Birth Date</a>
-            <input type="text" id="fname" name="fav_language" value=""></h4>
-        
-
-
+            <input type="date" id="bDate" name="fname" value=""></h4>
+        <h4><a id="title">Hire Date</a>
+            <input type="date" id="hDate" name="hDate" value="">
+        <h4><a id="title">SSN # (if applicable)</a>
+            <input type="text" id="ssn" name="ssn" value=""></h4>  
+        <h4><a id="title">Reports To</a>
+            <!-- <label for="reportsTo">Reports To:</label> -->
+            <select id="reportsTo" name="reportsTo">
+                <option value="Buchanan">Buchanan</option>
+                <option value="?">?</option>
+            </select>
+        </h4>    
     </div>
 
-    <H3 id="head_title">Contact Info</H3>
-
-    <H3 id="head_title">Optional Info</H3>
-    <h4><a id="title">Notes</a>
-    <div class="textarea">
-        <textarea name="content" id="editor">
-            &lt;p&gt;&lt;/p&gt;
-        </textarea>
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#editor' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
-    </div></h4>
-
-
+    <h2 id="head_title">Contact Info</h2>
+    <div class="content">
+        <h4><a id="title">Email</a>
+            <input type="email" id="email" name="email" value="name@example.com"></h4>
+        <h4><a id="title">Adress</a>
+            <input type="text" id="address" name="address" value="7 Houndstooth Rd."></h4>
+        <h4><a id="title">City</a>
+            <input type="text" id="city" name="city" value="London"></h4>
+        <h4><a id="title">Region</a>
+            <input type="text" id="region" name="region"></h4>
+        <h4><a id="title">Postal Code</a>
+            <input type="text" id="postalCode" name="postalCode" value="WG2 7LT"></h4>
+        <h4><a id="title">Country</a>
+            <input type="text" id="country" name="country" value="Russian Federation"></h4>
+        <h4><a id="title">US Home Phone</a>
+            <input type="tel" id="phone" name="phone" value="(234)234-2342"></h4>
+        <h4><a id="title">Photo</a>
+            <input type="file" id="photo" name="photo" value="EmpID9.bmp"></h4>
+    </div>
+    <h2 id="head_title">Optional Info</h2>
+        <h4><a id="title">Notes</a>
+        <div class="textarea">
+            <textarea name="content" id="editor">
+                &lt;p&gt;&lt;/p&gt;
+            </textarea>
+            <script>
+                ClassicEditor
+                    .create( document.querySelector( '#editor' ) )
+                    .catch( error => {
+                        console.error( error );
+                    } );
+            </script>
+        </div></h4>
+        <h4><a id="title">Preferred Shift<br></a>
+            <input type="checkbox" id="regular" name="shift">
+            <label for="regular">Regular</label><br>
+            <input type="checkbox" id="gravyYard" name="shift">
+            <label for="gravyYard">Gravy Yard</label><br>
+        </h4>
+        <h4><a id="title">Active?<br></a>
+            <input type="checkbox">
+        </h4>
+        <h4><a id="title">Are you human?<br></a>
+            <input type="checkbox" id="myCheck" onclick="show_capcha()">
+            <img id= "capcha" src="vector_capcha.png" alt="capcha" style="display: none;">
+            <script>
+                function show_capcha() {
+                  var checkBox = document.getElementById("myCheck");
+                  var text = document.getElementById("capcha");
+                  if (checkBox.checked == true){
+                    text.style.display = "block";
+                  } else {
+                     text.style.display = "none";
+                  }
+                }
+                </script>
+            <input type="text" id="capcha_text" name="capchatext" value="Input the capcha you see!"></h4>
+        </h4>
+        <section id="form-actions">
+            <button type="submit" class="btn-filled">Submit</button>
+            <button type="cancel" class="btn-empty">Cancel</button>
+        </section>
 </body>
 </html>
