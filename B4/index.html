@@ -99,7 +99,20 @@
             <input type="checkbox">
         </h4>
         <h4><a id="title">Are you human?<br></a>
-            <input type="checkbox">
+            <input type="checkbox" id="myCheck" onclick="show_capcha()">
+            <img id= "capcha" src="../vector_capcha.png" alt="capcha" style="display: none;">
+            <script>
+                function show_capcha() {
+                  var checkBox = document.getElementById("myCheck");
+                  var text = document.getElementById("capcha");
+                  if (checkBox.checked == true){
+                    text.style.display = "block";
+                  } else {
+                     text.style.display = "none";
+                  }
+                }
+                </script>
+            <input type="text" id="capcha_text" name="capchatext" value="Input the capcha you see!"></h4>
         </h4>
         <section id="form-actions">
             <button type="submit" class="btn-filled">Submit</button>
