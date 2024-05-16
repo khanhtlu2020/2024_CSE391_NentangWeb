@@ -1,3 +1,9 @@
+body{
+    border: 10px solid #b8b3b3d3;
+    padding: 10px;
+
+}
+  
 *{
     /* font-family: serif, 'Times New Roman', Times, serif;
      */
@@ -6,6 +12,8 @@
 
 #head_title{
     border-bottom: 2px solid #b4b4b4;
+    font-weight: 800;
+    
 }
 
 .content #title{
@@ -28,3 +36,21 @@
 h4{
     margin: 10px;
 }
+
+input[type=text],input[type=email],input[type=date],input[type=tel]{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid rgb(140, 139, 139);
+    border-bottom:1px solid rgb(140, 139, 139); 
+    border-top: 3px solid rgb(140, 139, 139);
+    box-shadow: 1px 1px 2px rgb(153, 151, 151);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    
+}
+
+#form-actions {
+    text-align: right;
+  }
+
+
