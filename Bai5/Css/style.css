@@ -243,3 +243,10 @@ table.table .avatar {
     background-color: #edeaea;
     margin: 10px 0;
   }
+
+  @media only screen and (max-width: 600px) {
+    /* CSS cho màn hình có chiều rộng nhỏ hơn hoặc bằng 600px */
+    .container {
+        width: 90%;
+    }
+}
