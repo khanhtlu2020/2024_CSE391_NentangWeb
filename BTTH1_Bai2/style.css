@@ -44,3 +44,9 @@ body {
     width: 100%;
     object-fit: scale-down;
 }
+
+@media only screen and (max-width: 600px) {
+    .body1, .body2 {
+        width: 90%;
+    }
+}
