@@ -36,8 +36,8 @@
                     empid: {
                         required: true,
                         digits: true,
-                        maxlength: 8,
-                        minlength:8                       
+                        maxlength: 10,
+                        minlength: 8                       
                     },
                     lname:{
                         required: true,
@@ -66,58 +66,112 @@
                         required: true,
                         digits: true,
                         maxlength: 12,
-                        minlength:12
+                        minlength: 10
                     },
                     email:{
                         required: true,
-                        email:true,
+                        email:true
                     },
                     address:{
                         required:true,
-                        
+                        minlength: 10
                     },
-
+                    city:{
+                        required: true,
+                        lettersonly: true
+                    },
+                    region:{
+                        required: true,
+                        lettersonly: true
+                    },
+                    postalCode:{
+                        required: true,
+                        minlength: 7,
+                        maxlength: 7
+                    },
+                    country:{
+                        required: true,
+                        lettersonly: true
+                    },
+                    phone: {
+                        required: true,
+                        digits: true
+                    },
+                    photo: {
+                        required: true,
+                        accept: 'image/jpeg, image/png, image/gif'
+                    }
                 },
                 messages: {
                     empid: {
-                        required: "Employee ID không được để trống",
-                        digits: "Employee ID chỉ được nhập số từ 0-9",
-                        maxlength: "Employee phải là 8 chữ số",
-                        minlength: "Employee phải là 8 chữ số"
+                        required: "Employee ID is required.",
+                        digits: "Employee ID must only contain numbers 0-9.",
+                        maxlength: "Employee ID must be between 8 and 10 digits long.",
+                        minlength: "Employee ID must be between 8 and 10 digits long."
                     },
                     lname:{
-                        required: "Last Name không được để trống",
+                        required: "Last Name is required.",
                         // digits: "Last Name không được có số"
-                        lettersonly: "Last Name không được có số"
+                        lettersonly: "Last Name cannot contain numbers or special characters."
                     },
                     title:{
-                        required: "Title không được để trống",
-                        lettersonly: "Title không được có số"
+                        required: "Last Name is required.",
+                        lettersonly: "Last Name cannot contain numbers or special characters."
                     },
                     fname:{
-                        required: "First Name không được để trống",
-                        lettersonly:"First Name không được có số"
+                        required: "First Name is required.",
+                        lettersonly:"First Name cannot contain numbers or special characters."
                     },
                     suffix:{
-                        required:"Suffix không được để trống"
+                        required:"Suffix is required.",
+                        lettersonly: "Suffix cannot contain numbers or special characters."
                     },
                     bDate:{
-                        required:"BirthDay không được để trống",
-                        date:"VUi lòng điền đúng định dạng ngày tháng năm"
+                        required:"BirthDay is required.",
+                        date:"Please enter a valid date format."
                     },
                     hDate:{
-                        required:"HireDate không được để trống",
-                        date:"VUi lòng điền đúng định dạng ngày tháng năm"
+                        required:"HireDate is required.",
+                        date:"Please enter a valid date format."
                     },
                     ssn: {
-                        required: "SSN không được để trống",
-                        digits: "SSN chỉ được nhập số từ 0-9",
-                        maxlength: "SSN phải là 12 chữ số",
-                        minlength: "SSN phải là 12 chữ số"
+                        required: "SSN is required.",
+                        digits: "SSN must only contain numbers 0-9.",
+                        maxlength: "SSN must be between 10 and 12 digits long.",
+                        minlength: "SSN must be between 10 and 12 digits long."
                     },
                     email:{
-                        required:"Email không được để trống. Chúng tôi sẽ liên hệ với bạn qua email này!",
-                        email:"Vui lòng nhập đúng định dạng email. Chúng tôi sẽ gửi thông báo tới bạn khi có tin tức mới!"
+                        required:"Email is required.",
+                        email:"Email address must contain '@' and a domain name (e.g., [name@example.com])."
+                    },
+                    address:{
+                        required:"Address is required.",
+                        minlength: "Address is too short."
+                    },
+                    city:{
+                        required:"City is required.",
+                        lettersonly: "Address cannot contain numbers or special characters."
+                    },
+                    region: {
+                        required:"Region is required.",
+                        lettersonly: "Region cannot contain numbers or special characters."
+                    },
+                    postalCode:{
+                        required:"Postal Code is required.",
+                        minlength: "Postal Code must be 7 digits long.",
+                        maxlength: "Postal Code must be 7 digits long."
+                    },
+                    country: {
+                        required:"Country is required.",
+                        lettersonly: "Country cannot contain numbers or special characters."
+                    },
+                    phone: {
+                        required:"Phone number is required.",
+                        digits:"Phone number must only contain numbers 0-9."
+                    },
+                    photo: {
+                        required:"Photo is required.",
+                        accept: "Invalid file type. Only JPG, PNG, and GIF images are allowed."
                     }
                 },
 
