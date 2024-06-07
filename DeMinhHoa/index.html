@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./js.js" />
+    <link rel="stylesheet" href="" />
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+  </head>
+  <style>
+    label.error {
+      color: red;
+    }
+    .priority-button {
+      width: 70px;
+    }
+    .addtask-button {
+      background-color: rgba(102, 60, 199, 0.719);
+    }
+    .priority-high.selected {
+      background-color: #dc3545;
+      color: white;
+    }
+    .priority-medium.selected {
+      background-color: #ffc107;
+      color: white;
+    }
+    .priority-low.selected {
+      background-color: #28a745;
+      color: white;
+    }
+    .cursor-pointer {
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <div class="container-sm bg-secondary-subtle border border-primary mb-4">
+      <div
+        class="header d-flex justify-content-between align-items-center my-4"
+      >
+        <div class="logo fw-bolder fs-2">Task List</div>
+        <div>
+          <button
+            id="show-form-btn"
+            class="addtask-button custom text-center border rounded-3 p-2 shadow btn btn-primary btn-"
+          >
+            + Add Task
+          </button>
+        </div>
+      </div>
+      <div class="main">
+        <form class="p-3" id="task-form">
+          <div id="task-list"></div>
+        </form>
+      </div>
+    </div>
+    <form
+      class="container-sm bg-secondary-subtle border border-primary h-50 d-none"
+      id="form-fill"
+    >
+      <header class="d-flex justify-content-between">
+        <div class="left fw-bolder">Add Task</div>
+        <div class="right">
+          <i class="fa-solid fa-x cursor-pointer" id="close-form-btn"></i>
+        </div>
+      </header>
+      <main>
+        <div class="mb-3">Task</div>
+        <input
+          type="text"
+          class="form-control shadow-sm p-2 border rounded-4 border-body-tertiary mb-3"
+          placeholder="Type your task here"
+          name="task"
+        />
+        <div id="task-error" class="text-danger"></div>
+        <div>Priority</div>
+        <div id="priority-error" class="text-danger mb-3"></div>
+        <div class="mb-5">
+          <button
+            type="button"
+            class="priority-button priority-high custom text-center border rounded-3 btn btn-sm me-2 btn-outline-danger"
+            data-priority="High"
+          >
+            High
+          </button>
+          <button
+            type="button"
+            class="priority-button priority-medium custom text-center border rounded-3 btn btn-sm me-2 btn-outline-warning"
+            data-priority="Medium"
+          >
+            Medium
+          </button>
+          <button
+            type="button"
+            class="priority-button priority-low custom text-center border rounded-3 btn btn-sm me-2 btn-outline-success"
+            data-priority="Low"
+          >
+            Low
+          </button>
+        </div>
+      </main>
+      <div class="d-flex justify-content-end mb-2">
+        <button
+          type="submit"
+          style="width: 70px"
+          class="custom text-center border rounded-3 btn btn-sm bg-secondary text-light"
+          id="addBtn"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let editIndex = -1;
+        fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const taskList = document.getElementById("task-list");
+            data.forEach((task, index) => {
+              const taskElement = createTaskElement(task, index);
+              taskList.appendChild(taskElement);
+            });
+          });
+
+        const formFill = document.getElementById("form-fill");
+        const showFormBtn = document.getElementById("show-form-btn");
+        const closeFormBtn = document.getElementById("close-form-btn");
+        const taskInput = document.querySelector('input[name="task"]');
+        let selectedPriority = null;
+
+        showFormBtn.addEventListener("click", () => {
+          formFill.classList.remove("d-none");
+          taskInput.value = "";
+          selectedPriority = null;
+          document
+            .querySelectorAll(".priority-button")
+            .forEach((btn) => btn.classList.remove("selected"));
+          editIndex = -1;
+        });
+
+        closeFormBtn.addEventListener("click", () => {
+          formFill.classList.add("d-none");
+        });
+
+        document.querySelectorAll(".priority-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            document
+              .querySelectorAll(".priority-button")
+              .forEach((btn) => btn.classList.remove("selected"));
+            button.classList.add("selected");
+            selectedPriority = button.getAttribute("data-priority");
+          });
+        });
+
+        $().ready(function () {
+          $("#form-fill").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+              task: {
+                required: true,
+                maxlength: 100,
+              },
+            },
+            messages: {
+              task: {
+                required: "Task is required.",
+                maxlength: "The task input limit is 100 words.",
+              },
+            },
+            submitHandler: function (form) {
+              if (!selectedPriority) {
+                document.getElementById("priority-error").innerText =
+                  "Priority is required.";
+                return false;
+              } else {
+                document.getElementById("priority-error").innerText = "";
+              }
+
+              const taskValue = taskInput.value;
+              const taskList = document.getElementById("task-list");
+
+              if (editIndex >= 0) {
+                const taskElements = taskList.getElementsByTagName("ul");
+                const taskElement = taskElements[editIndex];
+                taskElement.querySelector("li:nth-child(1) strong").innerText =
+                  taskValue;
+                taskElement.querySelector("li:nth-child(2) strong").innerText =
+                  selectedPriority;
+                taskElement.querySelector(
+                  "li:nth-child(2) strong"
+                ).className = `text-${
+                  selectedPriority === "High"
+                    ? "danger"
+                    : selectedPriority === "Medium"
+                    ? "warning"
+                    : "success"
+                }`;
+              } else {
+                const taskElement = createTaskElement(
+                  {
+                    task: taskValue,
+                    priority: selectedPriority,
+                    status: "Not Started",
+                  },
+                  taskList.childElementCount
+                );
+                taskList.appendChild(taskElement);
+              }
+
+              formFill.classList.add("d-none");
+              form.reset();
+              document
+                .querySelectorAll(".priority-button")
+                .forEach((btn) => btn.classList.remove("selected"));
+              selectedPriority = null;
+              editIndex = -1;
+            },
+          });
+        });
+
+        function createTaskElement(task, index) {
+          const taskElement = document.createElement("ul");
+          taskElement.className =
+            "row d-flex justify-content-between list-unstyled fs-6 mb-3 border rounded-3 p-2 bg-light-subtle";
+          taskElement.innerHTML = `<li class="col">
+               <span>Task</span>
+               <br> <strong>${task.task}</strong>
+             </li>
+             <li class="col">
+               <span>Priority</span>
+               <br> <strong class="text-${
+                 task.priority === "High"
+                   ? "danger"
+                   : task.priority === "Medium"
+                   ? "warning"
+                   : "success"
+               }">${task.priority}</strong>
+             </li>
+             <li class="col d-flex align-items-center">${task.status}</li>
+             <li class="col d-flex align-items-center justify-content-center"><i class="fa-regular fa-circle"></i></li>
+             <li class="col ms-auto text-end">
+               <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-index="${index}"></i>
+               <i class="fa-regular fa-trash-can cursor-pointer" data-index="${index}"></i>
+             </li>`;
+          taskElement
+            .querySelector(".fa-pen-to-square")
+            .addEventListener("click", (e) => {
+              editIndex = index;
+              taskInput.value = task.task;
+              selectedPriority = task.priority;
+              document.querySelectorAll(".priority-button").forEach((btn) => {
+                btn.classList.remove("selected");
+                if (btn.getAttribute("data-priority") === task.priority) {
+                  btn.classList.add("selected");
+                }
+              });
+              formFill.classList.remove("d-none");
+            });
+
+          taskElement
+            .querySelector(".fa-trash-can")
+            .addEventListener("click", () => {
+              taskElement.remove();
+            });
+
+          return taskElement;
+        }
+      });
+    </script>
+  </body>
+</html>
