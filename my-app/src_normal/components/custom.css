@@ -1,0 +1,24 @@
+/* custom.css */
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-inline .form-control {
+    margin-right: 5px;
+}
+
+.btn-primary{
+    position: absolute;
+    margin-left: 300px;
+
+}
+#task_name{
+    margin-top: 10px;
+}
+
+.btn-success{
+    margin-right: 10px;
+}
+/* custom.css */
+
